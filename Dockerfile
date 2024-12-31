@@ -1,15 +1,19 @@
-FROM node:18
+FROM node:20
 
-RUN mkdir -p /usr/source/app
+RUN mkdir -p /usr/src/docker-training
 
-WORKDIR /usr/source/app
+WORKDIR /usr/src/docker-training
 
-COPY package*.json ./
+COPY package.json ./
 
-RUN npm install
+COPY pnpm-lock.yaml ./
+
+RUN npm install -g pnpm
+
+RUN pnpm install
 
 COPY . .
 
 EXPOSE 3000
 
-CMD [ "npm", "run", "dev" ]
+CMD ["pnpm", "start"]

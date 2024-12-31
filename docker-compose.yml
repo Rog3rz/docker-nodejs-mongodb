@@ -1,16 +1,16 @@
-version: '3'
+version: "3"
 
 services:
-  web:
-    container_name: docker-app
+  node:
+    container_name: "docker-app"
     restart: always
     build: .
     ports:
-      - "5000:3000"
+      - "3000:3000"
     links:
-      - mongo
-  mongo:
-    container_name: mongo-docker
+      - db
+  db:
+    container_name: "mongodb"
     image: mongo
     ports:
       - "27019:27017"
